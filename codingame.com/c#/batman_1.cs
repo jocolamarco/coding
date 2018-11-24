@@ -57,10 +57,11 @@ class Player
             Console.Error.WriteLine("1Batman Pos: " + X0 + " " + Y0);
 
 
-            //if(first_try==1)
-            //{ 
+            // Going Left on the X axis
             if (bombDir == "L" || bombDir == "DL" || bombDir == "UL")
             {
+                max_X = X0;
+
                 if (Xprev > X)
                 {
                     Xprev = min_X;
@@ -72,8 +73,11 @@ class Player
 
             }
 
+            // Going Right on the X axis
             if (bombDir == "R" || bombDir == "DR" || bombDir == "UR")
             {
+                min_X = X0;
+
                 if (Xprev < X)
                 {
                     Xprev = max_X;
@@ -84,8 +88,11 @@ class Player
                 }
             }
 
+            // Going Up on the Y axis
             if (bombDir == "U" || bombDir == "UL" || bombDir == "UR")
             {
+                max_Y = Y0;
+
                 if (Yprev > Y)
                 {
                     Yprev = min_Y;
@@ -96,8 +103,11 @@ class Player
                 }
             }
 
+            // Going Down on the Y axis
             if (bombDir == "D" || bombDir == "DR" || bombDir == "DL")
             {
+                min_Y = Y0;
+
                 if (Yprev < Y)
                 {
                     Yprev = max_Y;
@@ -107,10 +117,7 @@ class Player
                     Yprev = min_Y;
                 }
             }
-
-            //    first_try = 0;
-            //}
-
+            
             Console.Error.WriteLine("2Batman Prev Pos: " + Xprev + " " + Yprev);
 			Console.Error.WriteLine("2Batman Min Pos: " + min_X + " " + min_Y);
 			Console.Error.WriteLine("2Batman Max Pos: " + max_X + " " + max_Y);
@@ -120,42 +127,42 @@ class Player
             {
                 case "U":
                     X = X0;
-                    Y = Y0 - (int)Math.Round((Y0 - Yprev) / 2.0, 0, MidpointRounding.AwayFromZero);
+                    Y = Y0 - (int)Math.Round((Y0 - min_Y) / 2.0, 0, MidpointRounding.AwayFromZero);
                     break;
 
                 case "UR":
-                    X = X0 - (int)Math.Round((X0 - Xprev) / 2.0, 0, MidpointRounding.AwayFromZero);
-                    Y = Y0 - (int)Math.Round((Y0 - Yprev) / 2.0, 0, MidpointRounding.AwayFromZero);
+                    X = X0 - (int)Math.Round((X0 - max_X) / 2.0, 0, MidpointRounding.AwayFromZero);
+                    Y = Y0 - (int)Math.Round((Y0 - min_Y) / 2.0, 0, MidpointRounding.AwayFromZero);
                     break;
 
                 case "R":
-                    X = X0 - (int)Math.Round((X0 - Xprev) / 2.0, 0, MidpointRounding.AwayFromZero);
+                    X = X0 - (int)Math.Round((X0 - max_X) / 2.0, 0, MidpointRounding.AwayFromZero);
                     Y = Y0;
                     break;
 
                 case "DR":
-                    X = X0 - (int)Math.Round((X0 - Xprev) / 2.0, 0, MidpointRounding.AwayFromZero);
-                    Y = Y0 - (int)Math.Round((Y0 - Yprev) / 2.0, 0, MidpointRounding.AwayFromZero);
+                    X = X0 - (int)Math.Round((X0 - max_X) / 2.0, 0, MidpointRounding.AwayFromZero);
+                    Y = Y0 - (int)Math.Round((Y0 - max_Y) / 2.0, 0, MidpointRounding.AwayFromZero);
                     break;
 
                 case "D":
                     X = X0;
-                    Y = Y0 - (int)Math.Round((Y0 - Yprev) / 2.0, 0, MidpointRounding.AwayFromZero);
+                    Y = Y0 - (int)Math.Round((Y0 - max_Y) / 2.0, 0, MidpointRounding.AwayFromZero);
                     break;
 
                 case "DL":
-                    X = X0 - (int)Math.Round((X0 - Xprev) / 2.0, 0, MidpointRounding.AwayFromZero);
-                    Y = Y0 - (int)Math.Round((Y0 - Yprev) / 2.0, 0, MidpointRounding.AwayFromZero);
+                    X = X0 - (int)Math.Round((X0 - min_X) / 2.0, 0, MidpointRounding.AwayFromZero);
+                    Y = Y0 - (int)Math.Round((Y0 - max_Y) / 2.0, 0, MidpointRounding.AwayFromZero);
                     break;
 
                 case "L":
-                    X = X0 - (int)Math.Round((X0 - Xprev) / 2.0, 0, MidpointRounding.AwayFromZero);
+                    X = X0 - (int)Math.Round((X0 - min_X) / 2.0, 0, MidpointRounding.AwayFromZero);
                     Y = Y0;
                     break;
 
                 case "UL":
-                    X = X0 - (int)Math.Round((X0 - Xprev) / 2.0, 0, MidpointRounding.AwayFromZero);
-                    Y = Y0 - (int)Math.Round((Y0 - Yprev) / 2.0, 0, MidpointRounding.AwayFromZero);
+                    X = X0 - (int)Math.Round((X0 - min_X) / 2.0, 0, MidpointRounding.AwayFromZero);
+                    Y = Y0 - (int)Math.Round((Y0 - min_Y) / 2.0, 0, MidpointRounding.AwayFromZero);
                     break;
 
             }
@@ -167,18 +174,8 @@ class Player
             X0 = X;
             Y0 = Y;
 
-            counter++;
-            //counter=N;
-
-
-            /* if (X<0 || X>=W || Y<0 || Y >= H)
-             {
-                 X=0;
-                 Y=0;
-                 counter = N;
-             }*/
-
-
+            counter++;            
+            
             // the location of the next window Batman should jump to.
             Console.WriteLine(X + " " + Y);
         }
