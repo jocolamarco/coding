@@ -25,7 +25,6 @@ class Player
         int counter = 0;
         int X = 0;
         int Y = 0;
-        int first_try = 1;
 
         int Xprev = 0;
         int Yprev = 0;
@@ -39,23 +38,10 @@ class Player
 		int min_Y = 0;
 		int max_Y = H;
 
-
-
         // game loop
         while (counter <= N)
         {
             string bombDir = Console.ReadLine(); // the direction of the bombs from batman's current location (U, UR, R, DR, D, DL, L or UL)
-
-            // Write an action using Console.WriteLine()
-            // To debug: Console.Error.WriteLine("Debug messages...");
-            Console.Error.WriteLine("Width: " + W);
-            Console.Error.WriteLine("Height: " + H);
-            Console.Error.WriteLine("Direction: " + bombDir);
-            Console.Error.WriteLine("1Batman Prev Pos: " + Xprev + " " + Yprev);
-			Console.Error.WriteLine("1Batman Min Pos: " + min_X + " " + min_Y);
-			Console.Error.WriteLine("1Batman Max Pos: " + max_X + " " + max_Y);
-            Console.Error.WriteLine("1Batman Pos: " + X0 + " " + Y0);
-
 
             // Going Left on the X axis
             if (bombDir == "L" || bombDir == "DL" || bombDir == "UL")
@@ -118,11 +104,6 @@ class Player
                 }
             }
             
-            Console.Error.WriteLine("2Batman Prev Pos: " + Xprev + " " + Yprev);
-			Console.Error.WriteLine("2Batman Min Pos: " + min_X + " " + min_Y);
-			Console.Error.WriteLine("2Batman Max Pos: " + max_X + " " + max_Y);
-            Console.Error.WriteLine("2Batman Pos: " + X0 + " " + Y0);
-
             switch (bombDir)
             {
                 case "U":
@@ -166,7 +147,6 @@ class Player
                     break;
 
             }
-            Console.Error.WriteLine("Batman Target: " + X + " " + Y);
 
             Xprev = X0;
             Yprev = Y0;
