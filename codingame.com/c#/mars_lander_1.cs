@@ -39,7 +39,16 @@ class Player
 
 
             // 2 integers: rotate power. rotate is the desired rotation angle (should be 0 for level 1), power is the desired thrust power (0 to 4).
-            Console.WriteLine("0 3");
+            if (Math.Abs(vSpeed) >= 40)
+            {
+
+                Console.WriteLine("0 4");
+            }
+            else
+            {
+                Console.WriteLine("0 0");
+            }
+
         }
     }
 }
